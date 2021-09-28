@@ -1,2 +1,2 @@
 # Atelier Products API
-API service for the Products Overview widget of the Project Catwalk repo in this organization
+API service for the Products-related data of Project Catwalk
