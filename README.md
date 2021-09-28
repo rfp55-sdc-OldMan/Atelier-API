@@ -1,2 +1,2 @@
 # Atelier Products API
-API service for the Products-related data of Project Catwalk
+API service for Products-related data of Project Catwalk
