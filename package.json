@@ -1,0 +1,27 @@
+{
+  "name": "products-api",
+  "version": "1.0.0",
+  "description": "API service for the Products Overview widget of the Project Catwalk repo in this organization",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rfp55-sdc-OldMan/Products-API.git"
+  },
+  "author": "Ya Liu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rfp55-sdc-OldMan/Products-API/issues"
+  },
+  "homepage": "https://github.com/rfp55-sdc-OldMan/Products-API#readme",
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.2"
+  },
+  "dependencies": {
+    "fast-csv": "^4.3.6"
+  }
+}
