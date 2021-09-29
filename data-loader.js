@@ -10,4 +10,6 @@ fs.createReadStream(path.resolve(__dirname, 'assets', 'features.csv'))
     // console.log(row);
     csvData.push(row);
   })
-  .on('end', () => console.log(csvData));
+  .on('end', () => {
+    console.log(csvData);
+  });
