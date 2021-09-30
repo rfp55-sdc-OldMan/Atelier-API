@@ -1,9 +1,11 @@
 const express = require('express');
 const Router = require('express-promise-router');
+const mountRoutes = require('./routes');
 
 const app = express();
 const port = 3000;
 const router = Router();
+mountRoutes(app);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -15,10 +17,6 @@ router.get('/', (req, res) => {
 
 router.get('/products', (req, res) => {
   res.json({ endpoint: 'list of products' });
-});
-
-router.get('/products/:product_id', (req, res) => {
-  res.json({ endpoint: '1 product' });
 });
 
 router.get('/products/:product_id/styles', (req, res) => {
