@@ -51,20 +51,8 @@ DROP TABLE related;
 
 CREATE TABLE related (
   id SERIAL PRIMARY KEY,
-  current_product_id INTEGER REFERENCES products,
-  related_product_id INTEGER REFERENCES products
+  current_product_id INTEGER REFERENCES products(id),
+  related_product_id INTEGER
 );
 
 -- ALTER TABLE features ADD CONSTRAINT features_product_id_fkey FOREIGN KEY (product_id) REFERENCES products(id);
-
-copy products from '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/Products-API/assets/product.csv' WITH (FORMAT csv, header);
-
-copy styles from '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/Products-API/assets/styles.csv' WITH (FORMAT csv, header);
-
-copy features from '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/Products-API/assets/features.csv' WITH (FORMAT csv, header);
-
-copy photos from '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/Products-API/assets/photos.csv' WITH (FORMAT csv, header);
-
-copy skus from '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/Products-API/assets/skus.csv' WITH (FORMAT csv, header);
-
-copy related from '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/Products-API/assets/related.csv' WITH (FORMAT csv, header);
