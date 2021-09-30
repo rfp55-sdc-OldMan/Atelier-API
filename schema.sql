@@ -60,3 +60,11 @@ CREATE TABLE related (
 copy products from '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/Products-API/assets/product.csv' WITH (FORMAT csv, header);
 
 copy styles from '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/Products-API/assets/styles.csv' WITH (FORMAT csv, header);
+
+copy features from '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/Products-API/assets/features.csv' WITH (FORMAT csv, header);
+
+copy photos from '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/Products-API/assets/photos.csv' WITH (FORMAT csv, header);
+
+copy skus from '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/Products-API/assets/skus.csv' WITH (FORMAT csv, header);
+
+copy related from '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/Products-API/assets/related.csv' WITH (FORMAT csv, header);
