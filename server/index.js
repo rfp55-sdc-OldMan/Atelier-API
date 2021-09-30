@@ -1,28 +1,31 @@
 const express = require('express');
+const Router = require('express-promise-router');
 
 const app = express();
 const port = 3000;
+const router = Router();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(router);
 
-app.get('/', (req, res) => {
+router.get('/', (req, res) => {
   res.json({ info: 'Node.js, Express, and Postgres API' });
 });
 
-app.get('/products', (req, res) => {
+router.get('/products', (req, res) => {
   res.json({ endpoint: 'list of products' });
 });
 
-app.get('/products/:product_id', (req, res) => {
+router.get('/products/:product_id', (req, res) => {
   res.json({ endpoint: '1 product' });
 });
 
-app.get('/products/:product_id/styles', (req, res) => {
+router.get('/products/:product_id/styles', (req, res) => {
   res.json({ endpoint: 'product styles' });
 });
 
-app.get('/products/:product_id/related', (req, res) => {
+router.get('/products/:product_id/related', (req, res) => {
   res.json({ endpoint: 'related products' });
 });
 

@@ -4,7 +4,7 @@
   "description": "API service for the Products Overview widget of the Project Catwalk repo in this organization",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "nodemon server/index.js"
   },
   "repository": {
@@ -21,6 +21,7 @@
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.24.2",
+    "jest": "^27.2.4",
     "nodemon": "^2.0.13"
   },
   "dependencies": {
