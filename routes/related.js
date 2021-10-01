@@ -8,14 +8,13 @@ module.exports = router;
 
 router.get('/:product_id/related', async (req, res) => {
   const id = req.params.product_id;
-  const query = {
-    text: 'SELECT related_product_id FROM related WHERE current_product_id = $1',
-    values: [id],
-    rowMode: 'array',
-  };
 
   try {
-    const { rows } = await db.query(query);
+    const { rows } = await db.query({
+      text: 'SELECT related_product_id FROM related WHERE current_product_id = $1',
+      values: [id],
+      rowMode: 'array',
+    });
     const processed = rows.map((row) => row[0]);
     res.send(processed);
   } catch (err) {
