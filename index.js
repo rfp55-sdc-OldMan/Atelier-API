@@ -5,6 +5,7 @@ const mountRoutes = require('./routes');
 const app = express();
 const port = 3000;
 const router = Router();
+
 mountRoutes(app);
 
 app.use(express.json());
@@ -15,9 +16,9 @@ router.get('/', (req, res) => {
   res.json({ info: 'Node.js, Express, and Postgres API' });
 });
 
-router.get('/products', (req, res) => {
-  res.json({ endpoint: 'list of products' });
-});
+// router.get('/products', (req, res) => {
+//   res.json({ endpoint: 'list of products' });
+// });
 
 router.get('/products/:product_id/styles', (req, res) => {
   res.json({ endpoint: 'product styles' });
