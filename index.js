@@ -20,9 +20,9 @@ router.get('/', (req, res) => {
 //   res.json({ endpoint: 'list of products' });
 // });
 
-router.get('/products/:product_id/styles', (req, res) => {
-  res.json({ endpoint: 'product styles' });
-});
+// router.get('/products/:product_id/styles', (req, res) => {
+//   res.json({ endpoint: 'product styles' });
+// });
 
 router.get('/products/:product_id/related', (req, res) => {
   res.json({ endpoint: 'related products' });
