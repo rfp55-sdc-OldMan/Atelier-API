@@ -1,6 +1,7 @@
 const express = require('express');
 // const Router = require('express-promise-router');
 const mountRoutes = require('./routes');
+// console.log(mountRoutes);
 
 const app = express();
 const port = 3000;
