@@ -13,8 +13,8 @@ router.get('/:product_id/styles', async (req, res) => {
   product_id, json_agg(json_build_object(
     'style_id', style_id,
     'name', name,
-    'sale_price', sale_price,
     'original_price', original_price,
+    'sale_price', sale_price,
     'default?', "default?",
     'photos',
     (SELECT json_agg(json_build_object(
@@ -39,7 +39,7 @@ router.get('/:product_id/styles', async (req, res) => {
 
   try {
     const { rows } = await db.query(text, values);
-    res.send(rows);
+    res.send(rows[0]);
   } catch (err) {
     console.log(err.stack);
   }
