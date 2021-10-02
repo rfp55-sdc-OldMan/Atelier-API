@@ -57,9 +57,9 @@ CREATE TABLE related (
 
 -- ALTER TABLE features ADD CONSTRAINT features_product_id_fkey FOREIGN KEY (product_id) REFERENCES products(id);
 
-CREATE INDEX idx_t_product_id ON products (id);
-CREATE INDEX idx_t_styles_id ON styles (style_id);
-CREATE INDEX idx_t_current_product_id ON related (current_product_id);
-CREATE INDEX idx_t_features_product_id ON features (product_id);
-CREATE INDEX idx_t_photos_style_id ON photos (style_id);
-CREATE INDEX idx_t_skus_style_id ON skus (style_id);
+CREATE INDEX idx_t_product_id ON products USING hash (id);
+CREATE INDEX idx_t_styles_id ON styles USING hash (style_id);
+CREATE INDEX idx_t_current_product_id ON related USING hash (current_product_id);
+CREATE INDEX idx_t_features_product_id ON features USING hash (product_id);
+CREATE INDEX idx_t_photos_style_id ON photos USING hash (style_id);
+CREATE INDEX idx_t_skus_style_id ON skus USING hash (style_id);
