@@ -59,3 +59,7 @@ CREATE TABLE related (
 
 CREATE INDEX idx_t_product_id ON products (id);
 CREATE INDEX idx_t_styles_id ON styles (style_id);
+CREATE INDEX idx_t_current_product_id ON related (current_product_id);
+CREATE INDEX idx_t_features_product_id ON features (product_id);
+CREATE INDEX idx_t_photos_style_id ON photos (style_id);
+CREATE INDEX idx_t_skus_style_id ON skus (style_id);
