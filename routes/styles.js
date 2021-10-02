@@ -25,10 +25,10 @@ router.get('/:product_id/styles', async (req, res) => {
     (SELECT
         json_object_agg(id,
             json_build_object(
-          'size', size,
-          'quantity', quantity
+              'quantity', quantity,
+              'size', size
             )
-        ) as skus
+        )
       FROM skus
       WHERE style_id = styles.style_id
           GROUP by style_id)
@@ -44,16 +44,3 @@ router.get('/:product_id/styles', async (req, res) => {
     console.log(err.stack);
   }
 });
-
-// layout of each styles object
-// top level: product_id: string id, results: []
-
-// inside results array, each object contains:
-// style_id,
-// name,
-// original_price,
-// sale_price,
-// default_style,
-// photos: [] an array of objects, each object contains a thumbnail_url and a url
-// skus: {} an object of objects
-// each inner sku object contains: sku_num: {quantity: 3, size: xs}
