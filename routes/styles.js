@@ -8,8 +8,33 @@ module.exports = router;
 
 router.get('/:product_id/styles', async (req, res) => {
   const id = req.params.product_id;
-  const photos = "json_agg(json_build_object('thumbnail_url', photos.thumbnail_url, 'url', photos.url))";
-  const text = `SELECT styles.id, name, original_price, sale_price, default_style, ${photos} FROM styles LEFT JOIN photos ON styles.id = photos.styleid WHERE styles.productid = $1 GROUP BY styles.id LIMIT 5`;
+
+  const text = `SELECT
+  product_id, json_agg(json_build_object(
+    'style_id', style_id,
+    'name', name,
+    'sale_price', sale_price,
+    'original_price', original_price,
+    'default?', "default?",
+    'photos',
+    (SELECT json_agg(json_build_object(
+        'thumbnail_url', thumbnail_url,
+        'url', url
+      )) FROM photos WHERE style_id = styles.style_id),
+  'skus',
+    (SELECT
+        json_object_agg(id,
+            json_build_object(
+          'size', size,
+          'quantity', quantity
+            )
+        ) as skus
+      FROM skus
+      WHERE style_id = styles.style_id
+          GROUP by style_id)
+  )) as results FROM styles
+      WHERE styles.product_id = $1
+        GROUP BY product_id`;
   const values = [id];
 
   try {
