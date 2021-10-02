@@ -56,3 +56,6 @@ CREATE TABLE related (
 );
 
 -- ALTER TABLE features ADD CONSTRAINT features_product_id_fkey FOREIGN KEY (product_id) REFERENCES products(id);
+
+CREATE INDEX idx_t_product_id ON products (id);
+CREATE INDEX idx_t_styles_id ON styles (style_id);
