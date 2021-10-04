@@ -11,12 +11,13 @@ router.get('/:product_id/related', async (req, res) => {
 
   try {
     const { rows } = await db.query({
-      text: 'SELECT related_product_id FROM related WHERE current_product_id = $1',
+      text: `SELECT json_agg(related_product_id) AS related
+      FROM related
+      WHERE current_product_id = $1`,
       values: [id],
-      rowMode: 'array',
     });
-    const processed = rows.map((row) => row[0]);
-    res.send(processed);
+    // const processed = rows.map((row) => row[0]);
+    res.send(rows[0].related);
   } catch (err) {
     console.log(err.stack);
   }

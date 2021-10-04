@@ -8,6 +8,8 @@ const pool = new Pool({
   port: 5432,
 });
 
+console.log('connected to postgresql');
+
 module.exports = {
   query: (text, params) => pool.query(text, params),
 };
