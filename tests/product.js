@@ -3,7 +3,7 @@ import { sleep } from 'k6';
 
 export const options = {
   vus: 3000,
-  duration: '15s',
+  duration: '30s',
 };
 
 export default function () {
@@ -12,4 +12,4 @@ export default function () {
   sleep(1);
 }
 
-// CLI command: k6 run test/script.js
+// CLI command: k6 run tests/product.js

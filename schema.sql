@@ -57,12 +57,14 @@ CREATE TABLE related (
 
 -- ALTER TABLE features ADD CONSTRAINT features_product_id_fkey FOREIGN KEY (product_id) REFERENCES products(id);
 
-COPY products FROM '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/Products-API/assets/product.csv' WITH (FORMAT csv, header);
-COPY styles FROM '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/Products-API/assets/styles.csv' WITH (FORMAT csv, header);
-COPY features FROM '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/Products-API/assets/features.csv' WITH (FORMAT csv, header);
-COPY photos FROM '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/Products-API/assets/photos.csv' WITH (FORMAT csv, header);
-COPY skus FROM '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/Products-API/assets/skus.csv' WITH (FORMAT csv, header);
-COPY related FROM '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/Products-API/assets/related.csv' WITH (FORMAT csv, header);
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO root;
+
+COPY products FROM '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/csvs/product.csv' DELIMITER ',' CSV HEADER;
+COPY styles FROM '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/csvs/styles.csv' DELIMITER ',' CSV HEADER;
+COPY features FROM '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/csvs/features.csv' DELIMITER ',' CSV HEADER;
+COPY photos FROM '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/csvs/photos.csv' DELIMITER ',' CSV HEADER;
+COPY skus FROM '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/csvs/skus.csv' DELIMITER ',' CSV HEADER;
+COPY related FROM '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/csvs/related.csv' DELIMITER ',' CSV HEADER;
 
 CREATE INDEX idx_t_product_id ON products USING hash (id);
 CREATE INDEX idx_t_styles_id ON styles USING hash (style_id);

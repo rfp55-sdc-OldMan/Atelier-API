@@ -1,6 +1,7 @@
+require('newrelic');
+
 const express = require('express');
 const mountRoutes = require('./routes');
-// console.log(mountRoutes);
 
 const app = express();
 const port = 3001;
