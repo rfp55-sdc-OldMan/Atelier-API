@@ -1,4 +1,11 @@
-DROP TABLE products;
+DROP DATABASE productsdb;
+CREATE DATABASE productsdb;
+
+-- connect to database
+\c productsdb;
+
+DROP ROLE api;
+CREATE ROLE api LOGIN PASSWORD 'apiuser';
 
 CREATE TABLE products (
   id SERIAL PRIMARY KEY,
@@ -6,21 +13,12 @@ CREATE TABLE products (
   slogan varchar,
   description varchar,
   category varchar,
-  default_price integer
+  default_price TEXT
 );
 
-DROP TABLE styles;
+COPY products FROM '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/csvs/product.csv' DELIMITER ',' CSV HEADER;
 
-CREATE TABLE styles (
-  id SERIAL PRIMARY KEY,
-  productId INTEGER REFERENCES products,
-  name varchar,
-  sale_price varchar DEFAULT NULL,
-  original_price varchar NOT NULL,
-  default_style boolean
-);
-
-DROP TABLE features;
+CREATE INDEX idx_t_product_id ON products USING hash (id);
 
 CREATE TABLE features (
   id SERIAL PRIMARY KEY,
@@ -29,25 +27,45 @@ CREATE TABLE features (
   value varchar
 );
 
-DROP TABLE photos;
+COPY features FROM '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/csvs/features.csv' DELIMITER ',' CSV HEADER;
+
+CREATE INDEX idx_t_features_product_id ON features USING hash (product_id);
+
+CREATE TABLE styles (
+  id SERIAL PRIMARY KEY,
+  product_id INTEGER REFERENCES products,
+  name TEXT NOT NULL,
+  sale_price varchar DEFAULT NULL,
+  original_price varchar NOT NULL,
+  default_style boolean
+);
+
+COPY styles FROM '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/csvs/styles.csv' DELIMITER ',' CSV HEADER;
+
+CREATE INDEX idx_t_styles_id ON styles USING hash (id);
+CREATE INDEX idx_t_styles_product_id ON styles USING hash (product_id);
 
 CREATE TABLE photos (
   id SERIAL PRIMARY KEY,
-  styleId INTEGER REFERENCES styles,
+  style_id INTEGER REFERENCES styles,
   url varchar,
   thumbnail_url varchar
 );
 
-DROP TABLE skus;
+COPY photos FROM '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/csvs/photos.csv' DELIMITER ',' CSV HEADER;
+
+CREATE INDEX idx_t_photos_style_id ON photos USING hash (style_id);
 
 CREATE TABLE skus (
   id SERIAL PRIMARY KEY,
-  styleId INTEGER REFERENCES styles,
+  style_id INTEGER REFERENCES styles,
   size varchar,
   quantity integer
 );
 
-DROP TABLE related;
+COPY skus FROM '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/csvs/skus.csv' DELIMITER ',' CSV HEADER;
+
+CREATE INDEX idx_t_skus_style_id ON skus USING hash (style_id);
 
 CREATE TABLE related (
   id SERIAL PRIMARY KEY,
@@ -55,20 +73,10 @@ CREATE TABLE related (
   related_product_id INTEGER
 );
 
--- ALTER TABLE features ADD CONSTRAINT features_product_id_fkey FOREIGN KEY (product_id) REFERENCES products(id);
-
-GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO root;
-
-COPY products FROM '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/csvs/product.csv' DELIMITER ',' CSV HEADER;
-COPY styles FROM '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/csvs/styles.csv' DELIMITER ',' CSV HEADER;
-COPY features FROM '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/csvs/features.csv' DELIMITER ',' CSV HEADER;
-COPY photos FROM '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/csvs/photos.csv' DELIMITER ',' CSV HEADER;
-COPY skus FROM '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/csvs/skus.csv' DELIMITER ',' CSV HEADER;
 COPY related FROM '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/csvs/related.csv' DELIMITER ',' CSV HEADER;
 
-CREATE INDEX idx_t_product_id ON products USING hash (id);
-CREATE INDEX idx_t_styles_id ON styles USING hash (style_id);
 CREATE INDEX idx_t_current_product_id ON related USING hash (current_product_id);
-CREATE INDEX idx_t_features_product_id ON features USING hash (product_id);
-CREATE INDEX idx_t_photos_style_id ON photos USING hash (style_id);
-CREATE INDEX idx_t_skus_style_id ON skus USING hash (style_id);
+
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA productsdb TO api;
+
+-- ALTER TABLE features ADD CONSTRAINT features_product_id_fkey FOREIGN KEY (product_id) REFERENCES products(id);
