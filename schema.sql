@@ -77,6 +77,6 @@ COPY related FROM '/Users/Simbelmyne/Online_Learning/Hack_Reactor/SDC/csvs/relat
 
 CREATE INDEX idx_t_current_product_id ON related USING hash (current_product_id);
 
-GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA productsdb TO api;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO api;
 
 -- ALTER TABLE features ADD CONSTRAINT features_product_id_fkey FOREIGN KEY (product_id) REFERENCES products(id);

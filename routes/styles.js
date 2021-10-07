@@ -11,16 +11,16 @@ router.get('/:product_id/styles', async (req, res) => {
 
   const text = `SELECT
   product_id, json_agg(json_build_object(
-    'style_id', style_id,
+    'style_id', id,
     'name', name,
     'original_price', original_price,
     'sale_price', sale_price,
-    'default?', "default?",
+    'default?', default_style,
     'photos',
     (SELECT json_agg(json_build_object(
         'thumbnail_url', thumbnail_url,
         'url', url
-      )) FROM photos WHERE style_id = styles.style_id),
+      )) FROM photos WHERE style_id = styles.id),
   'skus',
     (SELECT
         json_object_agg(id,
@@ -30,7 +30,7 @@ router.get('/:product_id/styles', async (req, res) => {
             )
         )
       FROM skus
-      WHERE style_id = styles.style_id
+      WHERE style_id = styles.id
           GROUP by style_id)
   )) as results FROM styles
       WHERE styles.product_id = $1
