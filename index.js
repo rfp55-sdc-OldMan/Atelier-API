@@ -13,5 +13,5 @@ app.get('/', (req, res) => {
 mountRoutes(app);
 
 app.listen(port, () => {
-  console.log(`connected to server at ${port}`);
+  console.log(`app listening on port ${port}`);
 });
