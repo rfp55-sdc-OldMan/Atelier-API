@@ -1,0 +1,16 @@
+import http from 'k6/http';
+import { sleep } from 'k6';
+
+export const options = {
+  vus: 3000,
+  duration: '30s',
+};
+
+export default function () {
+  // const page = Math.floor(Math.random() * 100);
+  // const count = Math.floor(Math.random() * 10000);
+  http.get(`http://localhost:3001/products`);
+  sleep(1);
+}
+
+// CLI command: k6 run tests/products.js
