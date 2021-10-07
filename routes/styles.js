@@ -32,7 +32,7 @@ router.get('/:product_id/styles', async (req, res) => {
       FROM skus
       WHERE style_id = styles.id
           GROUP by style_id)
-  )) as results FROM styles
+  ) ORDER BY styles.id) as results FROM styles
       WHERE styles.product_id = $1
         GROUP BY product_id`;
   const values = [id];
