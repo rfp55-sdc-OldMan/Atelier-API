@@ -10,6 +10,10 @@ app.get('/', (req, res) => {
   res.send('You\'ve reached the server');
 });
 
+app.get('/loaderio-939ed26f2c2611e4f593f0fe99e58506/', (req, res) => {
+  res.send('loaderio-939ed26f2c2611e4f593f0fe99e58506');
+});
+
 mountRoutes(app);
 
 app.listen(port, () => {

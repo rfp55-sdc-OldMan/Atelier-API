@@ -3,7 +3,7 @@ const pw = require('../config');
 
 const pool = new Pool({
   user: 'api',
-  host: '3.141.199.226',
+  host: '3.135.211.110',
   database: 'productsdb',
   password: pw.pw,
   port: 5432,
