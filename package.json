@@ -1,7 +1,7 @@
 {
   "name": "products-api",
   "version": "1.0.0",
-  "description": "API service for the Products Overview widget of the Project Catwalk repo in this organization",
+  "description": "API service for Products-related data of Toph Clothing Co",
   "main": "index.js",
   "scripts": {
     "test": "jest",
