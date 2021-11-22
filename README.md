@@ -10,6 +10,10 @@ This API service was created to accommodate higher traffic flow after the front-
 
 The backend database for this API is PostgreSQL. As a relational database management system, PostgreSQL is able to extract data in the desired format using aggregate functions, and can be optimized for performance using indexing.
 
+## PostgreSQL Schema
+
+![postgresqlSchema](/demo/schema.png)
+
 ## API Setup
 
 This API service is initially created with one Express server and one PostgreSQL database.
